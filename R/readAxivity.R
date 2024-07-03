@@ -655,11 +655,11 @@ readAxivity = function(filename, start = 0, end = 0, progressBar = FALSE, desire
       tmp = resample(rawAccel, rawTime, timeRes[pos:last], rawLast, type = interpolationType)
     } else {
       # Impute the data because integrity check did not pass
-      if (last - pos >  prevRaw$frequency * 259200) { # 3600 * 24 * 5 = 259200
-        # Error if time gap is very large to avoid filling up memory
-        stop(paste0("\nreadAxivity encountered a time gap in the file of ",
-                    round((last - pos) / (3600 * 24) / prevRaw$frequency, digits = 2), " days"))
-      }
+      # if (last - pos >  prevRaw$frequency * 259200) { # 3600 * 24 * 5 = 259200
+      #   # Error if time gap is very large to avoid filling up memory
+      #   stop(paste0("\nreadAxivity encountered a time gap in the file of ",
+      #               round((last - pos) / (3600 * 24) / prevRaw$frequency, digits = 2), " days"))
+      # }
 
       # Figure out the number of points to impute, numImp.
       # numImp should be such that timeRes[numImp + pos + 1] is the last point in timeRes[] < rawTime[rawLast]
